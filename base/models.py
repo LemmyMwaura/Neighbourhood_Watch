@@ -54,7 +54,7 @@ class Post(models.Model):
         ordering = ['updated', 'created']
 
     def __str__(self):
-        return self.title
+        return self.message[:50]
 
     def save_project(self):
         self.save()
