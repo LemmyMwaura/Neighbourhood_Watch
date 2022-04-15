@@ -1,0 +1,22 @@
+<nav>
+    <a href="{% url 'home' %}" class="logo">
+        Neighbourhood Watch
+    </a>
+    <form action="{% url 'home' %}" class="nav-search"> 
+        <i class='bx bx-search tooltip'></i>
+        <input class="search-input" type="text" name="q">
+    </form>
+    <div class="profile">
+        {% if request.user.is_authenticated %}
+        <div class="dropdown" data-dropdown>
+            <button class="dropdown-btn" data-dropdown-button>{{ request.user.username }}</button>
+            <div class="dropdown-menu items">
+                <a href="{% url 'profile' request.user.id %}"class="profile-options">Profile</a>
+                <a href="{% url 'logout'%}"class="profile-options">Logout</a>
+            </div>
+        </div>
+        {% else %}
+        <a href="{% url 'login' %}"class="register">Register/Login</a>
+        {% endif %}
+    </div>
+</nav>

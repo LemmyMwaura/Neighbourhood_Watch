@@ -2,9 +2,34 @@
 {% load static %}
 
 {% block link %}
-
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
 {% endblock %}
 
 {% block content %}
-
+    <div class="container">
+        <div class="home-wrapper">
+            <section class="neighbourhoods">
+                <h1>Neighbourhood</h1>
+                <div class="all-hoods">
+                    {% for neighbourhood in neighbourhoods %}
+                    <div class="neighbourhood-wrapper">
+                        <h1>{{ neighbourhood.name }}</h1>
+                        <h3>{{ neighbourhood.location }}</h3>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="home">
+                <h1>Home</h1>
+                {% for post in posts %}
+                <div class="post-wrapper">
+                    
+                </div>
+                {% endfor %}
+            </section>
+            <section class="activity">
+                <h1>Activity</h1>
+            </section>
+        </div>
+    </div>
 {% endblock %}
