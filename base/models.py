@@ -32,6 +32,7 @@ class Neighbourhood(models.Model):
 
 class Profile(models.Model):
     user_profile = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField()
     users_neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.DO_NOTHING, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -64,6 +65,7 @@ class Post(models.Model):
 
 class Business(models.Model):
     name = models.CharField(max_length=150)
+    description = models.TextField()
     users_name = models.ForeignKey(Profile, on_delete=models.CASCADE)
     Neighbourhood_bsns = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
