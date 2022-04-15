@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from base.forms import UserRegistrationForm
+from base.forms import PostForm, UserRegistrationForm
 from base.models import Neighbourhood, Post, Profile, Business
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -9,15 +9,16 @@ from django.contrib import messages
 
 # Create your views here.
 def home(request):
+    neighbourhoods = Neighbourhood.objects.all()
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     posts = Post.objects.filter(
         Q(user__user_profile__username__icontains = q) |
         Q(hood__name__icontains = q) |
         Q(message__icontains = q)
     )
-    neighbourhoods = Neighbourhood.objects.all()
+    form = PostForm
 
-    context = {"neighbourhoods":neighbourhoods, "posts":posts}
+    context = {"neighbourhoods":neighbourhoods, "posts":posts, "form":form}
     return render(request,'base/home.html',context)
 
 def login_user(request):
@@ -64,7 +65,7 @@ def register_user(request):
             else:
                 messages.error(request, 'An error occured during registration, Try again')
     except Exception as e:
-        messages.error(request, 'Something went wrong. Probably a connection issue, Try again!')
+        messages.error(request, 'Something went wrong. Probably a connection issue, Try again!', e)
 
     context={"page":page, "form":form}
     return render(request, 'base/login_register.html', context)
@@ -73,7 +74,62 @@ def logout_user(request):
     logout(request)
     return redirect('home')
 
-def profile(request,pk):
+@login_required(login_url='login')
+def create_post(request):
+    current_user_profile = Profile.objects.get(id=request.user.id)
 
-    context={}
+    if request.method == 'POST':
+        try:
+            form = PostForm(request.POST)
+            print(request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.user_id = current_user_profile.id
+                post.hood_id = current_user_profile.users_neighbourhood.id
+                post.save()
+                messages.success(request, 'Your post was created')
+                return redirect('home')
+            else:
+                messages.error(request, 'Something went wrong')
+        except Exception as e:
+            messages.error(request, 'Error')
+
+@login_required(login_url='login')
+def delete_post(request, pk):
+    post = Post.objects.get(id=pk)
+
+    if request.method == 'POST':
+        try:
+            post.delete()
+            messages.success(request, 'Post was deleted')
+            return redirect('home')
+        except Exception:
+            messages.error(request, 'Could not delete post, Try again')
+
+    context = {"obj":post}
+    return render(request, 'base/delete.html', context)
+
+@login_required(login_url='login')
+def update_post(request,pk):
+    post = Post.objects.get(id=pk)
+    form = PostForm(instance=post)
+
+    if request.method == 'POST':
+        try:
+            form = PostForm(request.POST, instance=post)
+            print(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Your post was edited')
+                return redirect('home')
+            else:
+                messages.error(request, 'Something went wrong')
+        except Exception as e:
+            messages.error(request, 'Error')
+
+@login_required(login_url='login')
+def profile(request,pk):
+    profile = Profile.objects.get(id=pk)
+
+    context={"profile":profile}
     return render(request, 'base/profile', context)

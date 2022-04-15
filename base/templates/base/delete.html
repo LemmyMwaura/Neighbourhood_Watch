@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'styles/login_register.css' %}">
+{% endblock %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "<span>{{obj}}</span>"?</p>
+        <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+        <input type="submit" value="Confirm">
+    </form>
+{% endblock %}

@@ -1,4 +1,9 @@
+a{
+    text-decoration: none;
+}
+
 nav{
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
+    align-items: center;
 }
