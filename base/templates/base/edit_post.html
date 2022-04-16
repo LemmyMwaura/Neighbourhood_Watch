@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block link %}
+    <!-- <link rel="stylesheet" href="{% static 'styles/home.css' %}"> -->
+{% endblock %}
+
+{% block content %}
+<form class="create-post-form modal" action="" method="POST">
+    {% csrf_token %}
+    <div class="title">Create Post</div>
+    <div class="form-group">
+        <label for="id_creativity" class="form-label">Creativity</label>
+        {{ form.message }}
+    </div>
+    <input type="submit" class="btn submit-newpost-btn" value="Post">
+</form>
+{% endblock %}

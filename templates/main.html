@@ -13,9 +13,40 @@
     {% block link %}{% endblock %}
 </head>
 <body>
-    {% include 'navbar.html' %}
-    {% block content %}
+    <header>
+        {% include 'navbar.html' %}
+    </header>
+    
 
-    {% endblock %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <div>
+            {% if message.tags == 'error' %}
+            <div class="flash-message modal danger">
+                {{ message }}
+                <button class="btn modal-btn"> 
+                    <i class='bx bx-x flash-tooltip'></i>
+                </button>
+            </div>
+            {% else %}
+            <div class="flash-message modal success">
+                {{ message }}
+                <button class="btn modal-btn">
+                    <i class='bx bx-x flash-tooltip'></i>
+                </button>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+   
 </body>
 </html>

@@ -81,7 +81,6 @@ def create_post(request):
     if request.method == 'POST':
         try:
             form = PostForm(request.POST)
-            print(request.POST)
             if form.is_valid():
                 post = form.save(commit=False)
                 post.user_id = current_user_profile.id
@@ -117,7 +116,6 @@ def update_post(request,pk):
     if request.method == 'POST':
         try:
             form = PostForm(request.POST, instance=post)
-            print(request.POST)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Your post was edited')
@@ -126,6 +124,9 @@ def update_post(request,pk):
                 messages.error(request, 'Something went wrong')
         except Exception as e:
             messages.error(request, 'Error')
+
+    context = {"form":form}
+    return render(request,'base/edit_post.html', context)
 
 @login_required(login_url='login')
 def profile(request,pk):
