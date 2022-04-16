@@ -129,8 +129,17 @@ def update_post(request,pk):
     return render(request,'base/edit_post.html', context)
 
 @login_required(login_url='login')
+def neighbourhood(request,pk):
+    hood = Neighbourhood.objects.get(id=pk)
+    posts = hood.posts.all()
+
+    context = {"hood":hood, "posts":posts}
+    return render(request, 'base/hood.html', context)
+
+
+@login_required(login_url='login')
 def profile(request,pk):
     profile = Profile.objects.get(id=pk)
 
     context={"profile":profile}
-    return render(request, 'base/profile', context)
+    return render(request, 'base/profile.html', context)

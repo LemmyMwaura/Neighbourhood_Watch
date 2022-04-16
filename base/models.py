@@ -45,7 +45,7 @@ class Profile(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+    hood = models.ForeignKey(Neighbourhood, related_name='posts', on_delete=models.CASCADE)
     message = models.TextField()
     # comments = models.ForeignKey('Comment',related_name='comments', blank=True)
     updated = models.DateTimeField(auto_now=True)
