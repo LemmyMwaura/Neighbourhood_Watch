@@ -8,7 +8,7 @@ class Neighbourhood(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['updated', 'created']
+        ordering = ['-updated', '-created']
 
     def __str__(self):
         return self.name
@@ -38,7 +38,7 @@ class Profile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        ordering = ['updated', 'created']
+        ordering = ['-updated', '-created']
 
     def __str__(self):
         return self.user_profile.username
@@ -52,7 +52,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['updated', 'created']
+        ordering = ['-updated', '-created']
 
     def __str__(self):
         return self.message[:50]
@@ -72,7 +72,7 @@ class Business(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['updated', 'created']
+        ordering = ['-updated', '-created']
 
     def __str__(self):
         return f'{self.name} business'
