@@ -3,50 +3,34 @@
     grid-template-columns: 1fr 3fr 1fr;
 }
 
-/* Modal */
-.create-post-form{
-    position: fixed;
-    margin: auto;
-    top: 50%;
-    left: 50%;
-    min-width: 50vw;
-    pointer-events: none;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    z-index: 100;
+.home,.neighbourhoods,.activity{
+    padding: 2rem;
 }
 
-.create-post-form.active{
-    opacity: 1;
-    pointer-events: all;
+.home-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 0;
-    background-color: rgba(0, 0, 0, .9);
-    pointer-events: none;
-    transition: 0.4s ease;
+.create-post-btn{
+    display: flex;
+    align-items: center;
+    gap: 15px
 }
 
-.overlay.active{
-    pointer-events: all;
-    opacity: 1;
+.hood-container{
+    display: grid;
+    gap: 10px;
 }
 
-.overlay-tooltip{
-    position: absolute;
-    top: 1rem;
-    right: 2rem;
-    font-size: 8rem;
-    cursor: pointer;
-    transition: 0.2s;
+.neighbourhood-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.overlay-tooltip:hover{
-    transform: rotate(90deg);
+.openhood-btn{
+    background-color: red;
+    padding: 0.5rem;
 }

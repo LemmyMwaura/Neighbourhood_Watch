@@ -12,3 +12,46 @@ document.addEventListener('click', (e) => {
         dropdown.classList.remove('active')
     })
 })
+
+// Flash messages modals
+const modalBtns = document.querySelectorAll('.modal-btn')
+modalBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    closeFlashMessage(btn)
+  })
+})
+
+function closeFlashMessage(btn){
+    let modal = btn.closest('.modal')
+    modal.classList.add('inactive')
+}
+
+//Pop up Modals
+const createbtns = document.querySelectorAll('.activate-btn')
+const overlay = document.querySelector('.overlay')
+
+createbtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const modal = document.querySelector('.modal')
+        openModal(modal)
+    })
+})
+
+overlay.addEventListener('click', () => {
+    const modals = document.querySelectorAll('.modal.active')
+    modals.forEach((modal)=> {
+        closeModal(modal)
+    })
+})
+
+function openModal(modal){
+    if (modal == null) return
+    modal.classList.add('active')
+    overlay.classList.add('active')
+}
+
+function closeModal(modal){
+    if (modal == null) return
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
+}

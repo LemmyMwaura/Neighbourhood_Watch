@@ -3,19 +3,20 @@
 
 {% block link %}
     <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/edit_form.css' %}">
 {% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="home-wrapper">
-            <form class="rating-form modal" action="{% url 'create-post' %}" method="POST">
+            <form class="create-post-form modal" action="{% url 'create-post' %}" method="POST">
                 {% csrf_token %}
                 <div class="title">Create Post</div>
                 <div class="form-group">
-                    <label for="id_creativity" class="form-label">Creativity</label>
+                    <label for="id_message" class="form-label">Message</label>
                     {{ form.message }}
                 </div>
-                <input type="submit" class="btn submit-newpost-btn" value="Post">
+                <input type="submit" class="btn form-btn" value="Post">
             </form>
             <div class="overlay">
                 <i class='bx bx-x overlay-tooltip'></i>
@@ -24,21 +25,33 @@
             <section class="neighbourhoods">
                 <h1>Neighbourhood</h1>
                 <div class="all-hoods">
-                    {% for neighbourhood in neighbourhoods %}
-                    <div class="neighbourhood-wrapper">
-                        <h6>{{ neighbourhood.name }}</h6>
-                        <!-- <h6>{{ neighbourhood.location }}</h6> -->
+                    <h3>Browse Neighbourhoods</h3>
+                    <a href="{% url 'home' %}">All</a>
+                    <div class="hood-container">
+                        {% for neighbourhood in neighbourhoods %}
+                        <div class="neighbourhood-wrapper">
+                            <div class="neighbourhood-header">
+                                <a class="hood-name" href="{% url 'home' %}?q={{neighbourhood.name}}">{{ neighbourhood.name }}</a>
+                                <a class="btn openhood-btn" href="{% url 'open-hood' neighbourhood.id %}">Open</a>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </section>
             <section class="home">
-                <h1>Home</h1>
+                <div class="home-header">
+                    <h1>Home</h1>
+                    <button class="btn create-post-btn activate-btn">
+                        <i class='bx bx-plus tooltip'></i>
+                        <span>Create Post</span> 
+                    </button>
+                </div>
                 {% for post in posts %}
                     <div class="post-wrapper">
-                        <h6>{{ post.message }}</h6>
-                        <a href="{% url 'update-post' post.id %}">Edit</a>
-                        <a href="{% url 'delete-post' post.id %}">Delete</a>
+                        <h6 class="post-message">{{ post.message }}</h6>
+                        <a class="btn edit-post" href="{% url 'update-post' post.id %}">Edit</a>
+                        <a class="btn delete-post" href="{% url 'delete-post' post.id %}">Delete</a>
                     </div>
                 {% endfor %}
             </section>

@@ -1,9 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500&family=Lato:wght@100;300;400;700;900&display=swap');
+
+*,::before,::after{
+   margin: 0;
+   padding: 0;  
+   box-sizing: border-box;
+}
+
+body{
+    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Cabin', sans-serif;
+    background: hsl(180, 2%, 13%);
+}
+
 a{
     text-decoration: none;
+    color: hsl(219, 15%, 95%);
 }
 
 nav{
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     align-items: center;
+    height: 4rem;
+    padding: 0 2rem;
+}
+
+.nav-logo{
+
+}
+
+.nav-search{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 1.8rem;
+}
+
+.nav-search input {
+    border: none;
+    outline: none;
+    height: 100%;
+    font-size: 1.1rem;
+    padding: 0 0.5rem;
+    color: hsl(219, 15%, 95%);
+    background:hsl(0, 0%, 33%);
+}
+
+.btn{
+    padding: 0.8rem 1rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn:active{
+    transform: scale(0.95);
+}
+
+/* Dropdown */
+.dropdown-menu.items{
+    display: grid;
+    gap: 10px;
+}
+
+.dropdown{
+    position: relative;
+}
+
+.dropdown-menu{
+    position: absolute;
+    left: 0;
+    top: calc(100% + 1.05rem);
+    background-color: hsl(0, 0%, 26%);
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    z-index: 100;
+    transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+.dropdown.active > .dropdown-menu{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* django flash Messages */
+.flash-message.modal{
+    display: grid;
+    gap: 0.8rem;
+    color: hsl(219, 15%, 95%);
+    position: fixed;
+    padding: 1rem 1rem;
+    top: 50%;
+    left: 50%;
+    min-width: 10rem;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    z-index: 5000;
+    transition: 200ms ease-in-out;
+    font-size: 1.5rem;
+}
+
+.inactive{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.success{
+    background-color: rgba(45, 185, 45, 0.719);
+}
+
+.danger{
+    background-color: rgba(235, 38, 38, 0.836);
+}
+
+.modal-btn{
+    background-color: hsl(180, 2%, 13%);
+    color: hsl(173, 52%, 53%);
+    height: 3rem;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.flash-tooltip{
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.flash-tooltip:hover{
+    transform: rotate(90deg);
+}
+
+/* Modal */
+.create-post-form{
+    position: fixed;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    min-width: 50vw;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+.create-post-form.active{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, .9);
+    pointer-events: none;
+    transition: 0.4s ease;
+}
+
+.overlay.active{
+    pointer-events: all;
+    opacity: 1;
+}
+
+.overlay-tooltip{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 8rem;
+    cursor: pointer;
+    transition: 0.2s;
+    color: hsl(219, 15%, 95%);
+}
+
+.overlay-tooltip:hover{
+    transform: rotate(90deg);
 }
