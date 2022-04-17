@@ -56,8 +56,8 @@ nav{
     border: none;
     outline: none;
     height: 100%;
-    font-size: 1.1rem;
-    padding: 0 0.5rem;
+    font-size: 1rem;
+    padding: 0 0.8rem;
     border-radius: 0.5rem;
     color: hsl(219, 15%, 95%);
     background:hsl(0, 0%, 33%);
@@ -276,7 +276,7 @@ nav{
 
 /* chrome + safari custom scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
     cursor: pointer;
     height: 1em;
   }

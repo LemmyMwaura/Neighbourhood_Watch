@@ -4,20 +4,12 @@
     display: grid;
     grid-template-columns: 3fr 1fr;
     gap: 20px;
-    margin: 0 20px;
+    margin: 0 20px 20px 20px;
     margin-top: calc(4rem + 20px);
     padding: 1rem 0rem  0 0rem;
     width: calc(100vw - 290px);
     left: 250px;
 }
-
-
-/* #f2c384
-#f1b058
-#262526
-#181718
-#121112
-#010001 */
 
 .home,.activity{
     padding: 2rem;
@@ -26,7 +18,6 @@
     border-radius: 0.5rem;
     height: auto;
 }
-
 
 .home-header{
     display: flex;
@@ -39,6 +30,11 @@
     align-items: center;
     gap: 10px;
     border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.tooltip-add{
+    font-size: 1rem;
 }
 
 .all-posts{
@@ -94,14 +90,6 @@
 }
 
 /* form */
-
-.edit-container{
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    height: calc(100vh - 4rem);
-}
-
 .edit-post-form *,
 .create-post-form *{
     width: 100%;

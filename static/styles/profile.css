@@ -1,0 +1,11 @@
+.profile-wrapper{
+    position: relative;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+    margin: 0 20px;
+    margin-top: calc(4rem + 20px);
+    padding: 1rem 0rem  0 0rem;
+    width: calc(100vw - 290px);
+    left: 250px;
+}

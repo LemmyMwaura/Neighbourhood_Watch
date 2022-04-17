@@ -6,17 +6,45 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ hood.name }}</h1>
+    
+<div class="container">
+    <!-- Modal form -->
+    <form class="create-post-form modal" action="{% url 'create-post' %}" method="POST">
+        {% csrf_token %}
+        <div class="title">Add your Business info</div>
+        <div class="form-group">
+            <label for="id_name" class="form-label">Name</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="id_description" class="form-label">Description</label>
+            {{ form.description }}
+        </div>
+        <input type="submit" class="btn form-btn" value="Add Business">
+    </form>
+    <div class="overlay">
+        <i class='bx bx-x overlay-tooltip'></i>
+    </div>
+    <!-- end form -->
+
     <section class="hood-wrapper">
-        <article class="contact-info">
-            <h3> Contact posts </h3>
-        </article>
-        <article class="posts">
-            <h3> Hood posts </h3>
-            {% for post in posts %}
-                <h5 class="post-message">{{ post.message }}</h5>
-            {% endfor %}
-        </article>
+        <section class="hood">
+            <div class="hood-header">
+                <div class="left">
+                    <i class='bx bx-building-house tooltip-hood'></i>
+                    <p class="hood-nametitle">{{ hood.name }} Neighbourhood</p>
+                </div>
+                <button class="btn create-post-btn activate-btn">
+                    <i class='bx bx-plus tooltip-add'></i>
+                    <span>Add Business</span> 
+                </button>  
+            </div>
+            <div class="all-posts">
+                {% for post in posts %}
+                    {% include 'base/post_component.html' %}
+                {% endfor %}
+            </div>
+        </section>
         <article class="members">
             <h3> Members </h3>
             <div class="all-members">
@@ -24,6 +52,12 @@
                 <h2>{{ member.user_profile.username }}</h2>
                 {% endfor %}
             </div>
+            <div class="contact-info">
+                <h3> Contact posts </h3>
+            </div>
         </article>
+        
     </section>
+
+</div>
 {% endblock %}
