@@ -7,17 +7,17 @@
         <i class='bx bx-search tooltip'></i>
         <input class="search-input" type="text" name="q">
     </form>
-    <div class="profile">
+    <div class="nav-profile">
         {% if request.user.is_authenticated %}
         <div class="dropdown" data-dropdown>
-            <button class="dropdown-btn btn" data-dropdown-button>{{ request.user.username }}</button>
+            <button class="dropdown-btn btn nav-goto-link" data-dropdown-button>{{ request.user.username }}</button>
             <div class="dropdown-menu items">
                 <a href="{% url 'profile' request.user.id %}"class="profile-options">Profile</a>
                 <a href="{% url 'logout'%}"class="profile-options">Logout</a>
             </div>
         </div>
         {% else %}
-        <a class="" href="{% url 'login' %}"class="register">Register/Login</a>
+        <a href="{% url 'login' %}" class="register btn nav-goto-link">Register/Login</a>
         {% endif %}
     </div>
 </nav>

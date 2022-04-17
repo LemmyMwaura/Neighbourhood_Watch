@@ -27,14 +27,12 @@ function closeFlashMessage(btn){
 }
 
 //Pop up Modals
-const createbtns = document.querySelectorAll('.activate-btn')
+const createbtn = document.querySelector('.activate-btn')
 const overlay = document.querySelector('.overlay')
 
-createbtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        const modal = document.querySelector('.modal')
-        openModal(modal)
-    })
+createbtn.addEventListener('click', () => {
+    const modal = document.querySelector('.modal')
+    openModal(modal)
 })
 
 overlay.addEventListener('click', () => {
