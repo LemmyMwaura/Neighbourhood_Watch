@@ -8,7 +8,7 @@
 
 {% block content %}
     <div class="container">
-        <div class="home-wrapper">
+            <!-- Modal form -->
             <form class="create-post-form modal" action="{% url 'create-post' %}" method="POST">
                 {% csrf_token %}
                 <div class="title">Create Post</div>
@@ -21,24 +21,9 @@
             <div class="overlay">
                 <i class='bx bx-x overlay-tooltip'></i>
             </div>
+            <!-- end form -->
 
-            <section class="neighbourhoods">
-                <h1>Neighbourhood</h1>
-                <div class="all-hoods">
-                    <h3>Browse Neighbourhoods</h3>
-                    <a href="{% url 'home' %}">All</a>
-                    <div class="hood-container">
-                        {% for neighbourhood in neighbourhoods %}
-                        <div class="neighbourhood-wrapper">
-                            <div class="neighbourhood-header">
-                                <a class="hood-name" href="{% url 'home' %}?q={{neighbourhood.name}}">{{ neighbourhood.name }}</a>
-                                <a class="btn openhood-btn" href="{% url 'open-hood' neighbourhood.id %}">Open</a>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </section>
+        <div class="home-wrapper">
             <section class="home">
                 <div class="home-header">
                     <h1>Home</h1>
@@ -47,13 +32,31 @@
                         <span>Create Post</span> 
                     </button>
                 </div>
-                {% for post in posts %}
+                <div class="all-posts">
+                    {% for post in posts %}
                     <div class="post-wrapper">
-                        <h6 class="post-message">{{ post.message }}</h6>
-                        <a class="btn edit-post" href="{% url 'update-post' post.id %}">Edit</a>
-                        <a class="btn delete-post" href="{% url 'delete-post' post.id %}">Delete</a>
+                        <div class="name">
+                            <span>by</span>
+                            <i class='bx bxs-badge-check tooltip'></i>
+                            <p class="post-user">{{ post.user.user_profile.username }}</p>
+                        </div>
+                        <div class="post-message">{{ post.message }}</div>
+                        <div class="footer">
+                            <div class="time">{{ post.created|timesince }} ago</div>
+                            <div class="edits">
+                                <a class="btn edit-post" href="{% url 'update-post' post.id %}">
+                                    <i class='bx bxs-edit'></i>
+                                    <span class="edit">Edit</span>
+                                </a>
+                                <a class="btn delete-post" href="{% url 'delete-post' post.id %}">
+                                    <i class='bx bx-trash tooltip'></i> 
+                                    <span class="delete">Delete</span>
+                                </a>
+                            </div> 
+                        </div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </section>
             <section class="activity">
                 <h1>Activity</h1>

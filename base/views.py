@@ -132,8 +132,9 @@ def update_post(request,pk):
 def neighbourhood(request,pk):
     hood = Neighbourhood.objects.get(id=pk)
     posts = hood.posts.all()
+    members = hood.members.all()
 
-    context = {"hood":hood, "posts":posts}
+    context = {"hood":hood, "posts":posts, "members":members}
     return render(request, 'base/hood.html', context)
 
 @login_required(login_url='login')

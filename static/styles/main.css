@@ -6,10 +6,18 @@
    box-sizing: border-box;
 }
 
+/* #f2c384
+#f1b058
+#262526
+#181718
+#121112
+#010001 */
+
 body{
     /* font-family: 'Lato', sans-serif; */
     font-family: 'Cabin', sans-serif;
-    background: hsl(180, 2%, 13%);
+    background: hsl(300, 100%, 0%);
+    color: hsl(219, 15%, 95%);
 }
 
 a{
@@ -18,11 +26,17 @@ a{
 }
 
 nav{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 100;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     align-items: center;
     height: 4rem;
     padding: 0 2rem;
+    background-color: rgb(24, 23, 24);
+    border-radius: 0.1rem;
 }
 
 .nav-logo{
@@ -118,7 +132,7 @@ nav{
 
 .modal-btn{
     background-color: hsl(180, 2%, 13%);
-    color: hsl(173, 52%, 53%);
+    color: hsl(35, 85%, 65%);
     height: 3rem;
     font-weight: 500;
     outline: none;
@@ -147,7 +161,7 @@ nav{
     pointer-events: none;
     opacity: 0;
     transform: translate(-50%, -50%);
-    z-index: 100;
+    z-index: 2000;
 }
 
 .create-post-form.active{
@@ -165,6 +179,7 @@ nav{
     background-color: rgba(0, 0, 0, .9);
     pointer-events: none;
     transition: 0.4s ease;
+    z-index: 1000;
 }
 
 .overlay.active{
@@ -185,3 +200,55 @@ nav{
 .overlay-tooltip:hover{
     transform: rotate(90deg);
 }
+
+/* sidebar */
+.neighbourhoods{
+    position: fixed;
+    top: 4rem;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    border-radius: 0;
+    padding: 0.5rem;
+    background-color: #f1b058;
+    min-height: calc(100vh - 4rem);
+}
+
+.hood-container{
+    display: grid;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.hood-title{
+    text-align: center;
+    text-decoration: underline;
+    font-weight: 500;
+    color: hsl(219, 15%, 95%);
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    background-color: rgb(24, 23, 24);
+}
+
+.neighbourhood-wrapper, .hood-alllink{
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    background-color: rgb(24, 23, 24);
+}
+
+.hood-alllink{
+    width: 100%;
+}
+
+.neighbourhood-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.openhood-btn{
+    background-color: #f1b058;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+/* endsidebar */

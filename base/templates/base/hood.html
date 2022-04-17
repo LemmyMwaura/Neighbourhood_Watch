@@ -8,14 +8,22 @@
 {% block content %}
     <h1>{{ hood.name }}</h1>
     <section class="hood-wrapper">
+        <article class="contact-info">
+            <h3> Contact posts </h3>
+        </article>
         <article class="posts">
             <h3> Hood posts </h3>
             {% for post in posts %}
                 <h5 class="post-message">{{ post.message }}</h5>
             {% endfor %}
         </article>
-        <article class="contact-info">
-            <h3> Contact posts </h3>
+        <article class="members">
+            <h3> Members </h3>
+            <div class="all-members">
+                {% for member in members %}
+                <h2>{{ member.user_profile.username }}</h2>
+                {% endfor %}
+            </div>
         </article>
     </section>
 {% endblock %}

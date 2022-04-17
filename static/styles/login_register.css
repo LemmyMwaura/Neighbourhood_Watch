@@ -1,7 +1,3 @@
-body{
-    background-color: hsl(0, 0%, 23%);
-}
-
 section{
     display: flex;
     flex-direction: column;
@@ -66,7 +62,7 @@ section{
 .new-user-username,
 .new-user-password,
 .new-user-confirm-password{
-    border: 2px solid hsl(173, 52%, 53%);
+    border: 2px solid hsl(35, 85%, 65%);
     outline: none;
     background: none;
     height: 3rem;
@@ -81,9 +77,9 @@ section{
     font-weight: bold;
     color:hsl(180, 2%, 13%);
     text-transform: uppercase;
-    background-color: hsl(173, 52%, 53%);
+    background-color: hsl(35, 85%, 65%);
 }
 
 .auth-link{
-    color: hsl(173, 52%, 53%);
+    color: hsl(35, 85%, 65%);
 }
