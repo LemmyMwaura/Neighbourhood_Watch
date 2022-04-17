@@ -2,6 +2,7 @@ from django.forms import EmailField, EmailInput, ModelForm, TextInput, Textarea,
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Business, Profile, Post
+from phone_field.forms import PhoneWidget
 class PostForm(ModelForm):
     class Meta:
         model = Post
@@ -15,10 +16,12 @@ class BusinessForm(ModelForm):
     class Meta:
         model = Business
         fields = '__all__'
-        exclude = ['updated','created','users_name']
+        exclude = ['updated','created','users_name','Neighbourhood_bsns']
         widgets = {
             'name':TextInput(attrs={'class':'business-name'}),
             'description' : Textarea(attrs={'class':'business-description', 'rows':4, 'cols':35}),
+            'email': EmailInput(attrs={'class':'business-email'}),
+            'business_number': PhoneWidget(attrs={'class':'business-number'}),
         }
 
 class ProfileForm(ModelForm):

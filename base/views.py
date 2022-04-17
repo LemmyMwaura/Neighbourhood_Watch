@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from base.forms import PostForm, UserRegistrationForm
+from base.forms import BusinessForm, PostForm, UserRegistrationForm
 from base.models import Neighbourhood, Post, Profile, Business
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -130,12 +130,34 @@ def update_post(request,pk):
 
 @login_required(login_url='login')
 def neighbourhood(request,pk):
+    neighbourhoods = Neighbourhood.objects.all()
     hood = Neighbourhood.objects.get(id=pk)
     posts = hood.posts.all()
     members = hood.members.all()
+    form = BusinessForm
 
-    context = {"hood":hood, "posts":posts, "members":members}
+    context = {"hood":hood, "posts":posts, "members":members,
+        "form":form, "neighbourhoods":neighbourhoods }
     return render(request, 'base/hood.html', context)
+
+@login_required(login_url='login')
+def create_business(request,pk):
+    current_user_profile = Profile.objects.get(id=request.user.id)
+
+    if request.method == 'POST':
+        try:
+            form = BusinessForm(request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.users_name_id = current_user_profile.id
+                post.Neighbourhood_bsns_id = pk
+                post.save()
+                messages.success(request, 'Your Business was posted')
+                return redirect('open-hood', pk=pk)
+            else:
+                messages.error(request, 'Something went wrong')
+        except Exception as e:
+            messages.error(request, 'Error')
 
 @login_required(login_url='login')
 def profile(request,pk):

@@ -1,4 +1,5 @@
 from django.db import models
+from phone_field import PhoneField
 from django.contrib.auth.models import User
 
 class Neighbourhood(models.Model):
@@ -66,6 +67,8 @@ class Post(models.Model):
 class Business(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField()
+    email = models.EmailField(blank=True)
+    business_number = PhoneField(blank=True, help_text='Enter your Business\' Phone Number, ext(extention) is optional')
     users_name = models.ForeignKey(Profile, on_delete=models.CASCADE)
     Neighbourhood_bsns = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)

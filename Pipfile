@@ -15,6 +15,7 @@ python-decouple = "*"
 dj-database-url = "*"
 djangorestframework = "*"
 django-cloudinary-storage = "*"
+django-phone-field = "*"
 
 [dev-packages]
 
