@@ -13,7 +13,6 @@ def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     posts = Post.objects.filter(
         Q(user__user_profile__username__icontains = q) |
-        Q(hood__name__icontains = q) |
         Q(message__icontains = q)
     )
     businesses = Business.objects.filter(
@@ -138,7 +137,6 @@ def neighbourhood(request,pk):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     posts = hood.posts.filter(
         Q(user__user_profile__username__icontains = q) |
-        Q(hood__name__icontains = q) |
         Q(message__icontains = q)
     )
     businesses = hood.business_set.filter(
@@ -178,7 +176,6 @@ def profile(request,pk):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     posts = profile.post_set.filter(
         Q(user__user_profile__username__icontains = q) |
-        Q(hood__name__icontains = q) |
         Q(message__icontains = q)
     )
     businesses = profile.business_set.filter(

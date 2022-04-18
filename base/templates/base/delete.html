@@ -2,14 +2,19 @@
 {% load static %}
 
 {% block link %}
-<link rel="stylesheet" href="{% static 'styles/login_register.css' %}">
+<link rel="stylesheet" href="{% static 'styles/delete.css' %}">
 {% endblock %}
 
 {% block content %}
-    <form action="" method="POST">
+<div class="delete-container">
+    <form action="" class="delete-post-form" method="POST">
         {% csrf_token %}
+        <div class="title">Delete Post</div>
         <p>Are you sure you want to delete "<span>{{obj}}</span>"?</p>
-        <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
-        <input type="submit" value="Confirm">
+        <div class="footer">
+            <a class="btn form-btn" href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+            <input class="btn form-btn" type="submit" value="Confirm">
+        </div>
     </form>
+</div>
 {% endblock %}

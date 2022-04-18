@@ -2,11 +2,11 @@
     <h1 class="hood-title">Neighbourhoods</h1>
     <div class="all-hoods">
         <div class="hood-container">
-            <a class="hood-alllink" href="{% url 'home' %}">All</a>
+            <a class="hood-alllink" href="{{ request.META.HttpRequest.path }}">All</a>
             {% for neighbourhood in neighbourhoods %}
             <div class="neighbourhood-wrapper">
                 <div class="neighbourhood-header">
-                    <a class="hood-name" href="{% url 'home' %}?q={{neighbourhood.name}}">{{ neighbourhood.name }}</a>
+                    <a class="hood-name" href="{{request.META.HttpRequest.path}}?q={{neighbourhood.name}}">{{ neighbourhood.name }}</a>
                     <a class="btn openhood-btn" href="{% url 'open-hood' neighbourhood.id %}">Open</a>
                 </div>
             </div>
