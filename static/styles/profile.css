@@ -22,8 +22,7 @@
     font-family: 'Lato', sans-serif;
 }
 
-.profile,
-.user-details{
+.profile{
     padding: 2rem;
     background-color: rgb(24, 23, 24);
     border-radius: 0.5rem;
@@ -45,10 +44,10 @@
     width: 100%;
 }
 
-.all-posts{
+.all-posts,
+.all-bsns{
     display: grid;
     gap: 20px;
-    margin-top: 20px;
 }
 
 .post-wrapper{
@@ -154,3 +153,16 @@
     background-color: hsl(35, 85%, 65%);
 }
 /* end form */
+
+.user-details{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.all-posts,
+.all-bsns{
+    padding: 2rem;
+    background-color: rgb(24, 23, 24);
+    border-radius: 0.5rem;
+}

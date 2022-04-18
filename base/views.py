@@ -133,11 +133,12 @@ def neighbourhood(request,pk):
     neighbourhoods = Neighbourhood.objects.all()
     hood = Neighbourhood.objects.get(id=pk)
     posts = hood.posts.all()
+    businesses = hood.business_set.all()
     members = hood.members.all()
     form = BusinessForm
 
     context = {"hood":hood, "posts":posts, "members":members,
-        "form":form, "neighbourhoods":neighbourhoods }
+        "form":form, "neighbourhoods":neighbourhoods, "businesses":businesses }
     return render(request, 'base/hood.html', context)
 
 @login_required(login_url='login')
@@ -163,8 +164,10 @@ def create_business(request,pk):
 def profile(request,pk):
     profile = Profile.objects.get(id=pk)
     posts = profile.post_set.all()
+    businesses = profile.business_set.all()
     form = ProfileForm(instance=profile)
     neighbourhoods = Neighbourhood.objects.all()
+    
 
     if request.method == 'POST':
         try:
@@ -184,5 +187,5 @@ def profile(request,pk):
         except Exception as e:
             messages.error(request, 'An Error occured. Try again', print(e), e)
 
-    context={"profile":profile, "posts":posts, "form":form, "neighbourhoods":neighbourhoods}
+    context={"profile":profile, "posts":posts, "form":form, "neighbourhoods":neighbourhoods, "businesses":businesses}
     return render(request, 'base/profile.html', context)

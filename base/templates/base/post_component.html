@@ -2,7 +2,7 @@
     <div class="name">
         <span>by</span>
         <i class='bx bxs-badge-check tooltip'></i>
-        <p class="post-user">{{ post.user.user_profile.username }}</p>
+        <a href="{% url 'profile' post.user.user_profile.id %}" class="post-user">{{ post.user.user_profile.username }}</a>
     </div>
     <div class="post-message">{{ post.message }}</div>
     <div class="footer">

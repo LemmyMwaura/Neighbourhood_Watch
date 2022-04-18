@@ -25,7 +25,7 @@
         <div class="home-wrapper">
             <section class="home">
                 <div class="home-header">
-                    <h1>Home</h1>
+                    <h1 class="home-title">Home</h1>
                     {% if request.user.currentuser.users_neighbourhood != None %}
                     <button class="btn create-post-btn activate-btn">
                         <i class='bx bx-plus tooltip-add'></i>
@@ -40,7 +40,7 @@
                 </div>
             </section>
             <section class="activity">
-                <h1>Activity</h1>
+                <h1 class="home-title">Activity</h1>
             </section>
         </div>
     </div>

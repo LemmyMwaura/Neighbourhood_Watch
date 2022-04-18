@@ -1,0 +1,23 @@
+<div class="post-wrapper">
+    <div class="name">Name: {{ bsns.name }}</div>
+    <div class="email">Email: {{ bsns.email }}</div>
+    <div class="post-message">{{ bsns.description }}</div>
+    <div class="name">
+        <span>Merchant:</span>
+        <i class='bx bxs-badge-check tooltip'></i>
+        <a href="{% url 'profile' bsns.users_name.user_profile.id %}" class="post-user">{{ bsns.users_name.user_profile.username }}</a>
+    </div>
+    <div class="footer">
+        <div class="time">{{ bsns.created|timesince }} ago</div>
+        <div class="edits">
+            <a class="btn edit-post" href="{% url 'update-post' bsns.id %}">
+                <i class='bx bxs-edit'></i>
+                <span class="edit">Edit</span>
+            </a>
+            <a class="btn delete-post" href="{% url 'delete-post' bsns.id %}">
+                <i class='bx bx-trash tooltip'></i> 
+                <span class="delete">Delete</span>
+            </a>
+        </div> 
+    </div>
+</div>

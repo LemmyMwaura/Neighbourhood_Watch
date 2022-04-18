@@ -13,7 +13,6 @@
 
 .home,.activity{
     padding: 2rem;
-    /* border: 1px solid white; */
     background-color: rgb(24, 23, 24);
     border-radius: 0.5rem;
     height: auto;
@@ -25,12 +24,16 @@
     justify-content: space-between;
 }
 
+.home-title{
+    font-family: 'Lato', sans-serif;
+}
+
 .create-post-btn{
     display: flex;
     align-items: center;
     gap: 10px;
     border-radius: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 .tooltip-add{

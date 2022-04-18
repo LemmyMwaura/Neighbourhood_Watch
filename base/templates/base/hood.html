@@ -9,7 +9,7 @@
     
 <div class="container">
     <!-- Modal form -->
-    <form class="create-post-form modal" action="{% url 'create-post' %}" method="POST">
+    <form class="create-post-form modal" action="{% url 'create-business' hood.id %}" method="POST">
         {% csrf_token %}
         <div class="title">Add your Business info</div>
         <div class="form-group">
@@ -20,6 +20,17 @@
             <label for="id_description" class="form-label">Description</label>
             {{ form.description }}
         </div>
+        <div class="form-group">
+            <label for="id_email" class="form-label">Business Email</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label for="id_business_number" class="form-label bsns-number">Business Number</label>
+            {{ form.business_number }}
+        </div>
+        <div class="form-group">
+            {{ form.business_number.help_text }}
+        </div>
         <input type="submit" class="btn form-btn" value="Add Business">
     </form>
     <div class="overlay">
@@ -28,7 +39,8 @@
     <!-- end form -->
 
     <section class="hood-wrapper">
-        <section class="hood">
+
+        <article class="hood">
             <div class="hood-header">
                 <div class="left">
                     <i class='bx bx-building-house tooltip-hood'></i>
@@ -39,23 +51,35 @@
                     <span>Add Business</span> 
                 </button>  
             </div>
+
+            <div class="hood-info">
+                <h3> Members ({{ members.count }})</h3>
+                <div class="contact-info">
+                    <h3> Contact Information </h3>
+                    <h5>Hospital No: 255 6456</h5>
+                    <h5>Police No: 215 6456</h5>
+                </div>
+                <div class="contact-info">
+                    <h3> Emergency Contact </h3>
+                    <h5>Dial: 112</h5>
+                </div>
+            </div>
+        </article>
+
+        <section class="hood-items">
             <div class="all-posts">
+                <h1 class="hood-post-title">Posts</h1>
                 {% for post in posts %}
                     {% include 'base/post_component.html' %}
                 {% endfor %}
             </div>
-        </section>
-        <article class="members">
-            <h3> Members </h3>
-            <div class="all-members">
-                {% for member in members %}
-                <h2>{{ member.user_profile.username }}</h2>
+            <div class="all-bsns">
+                <h1 class="hood-post-title">Business'</h1>
+                {% for bsns in businesses %}
+                    {% include 'base/bsns_component.html' %}
                 {% endfor %}
             </div>
-            <div class="contact-info">
-                <h3> Contact posts </h3>
-            </div>
-        </article>
+        </section>  
         
     </section>
 

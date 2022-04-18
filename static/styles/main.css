@@ -248,6 +248,10 @@ nav{
     background-color: #f1b058;
 }
 
+.hood-name{
+    text-transform: capitalize;
+}
+
 .neighbourhood-wrapper, .hood-alllink{
     padding: 0.5rem;
     border-radius: 0.2rem;
@@ -283,7 +287,7 @@ nav{
   
   ::-webkit-scrollbar-track {
     background: #121112;
-    margin-block: 0em;
+    margin-block: 0.5em;
     cursor: pointer;
   }
   
