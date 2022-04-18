@@ -27,14 +27,11 @@ class BusinessForm(ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio',)
+        fields = '__all__'
+        exclude = ['updated','created','user_profile','users_neighbourhood']
         widgets = {
             'bio': Textarea(attrs={'class':'profile-form-bio','rows':4, 'cols':35}),
         }
-
-    # def __init__(self, *args, **kwargs):
-    #     super(ProfileForm, self).__init__(*args, **kwargs)
-    #     self.fields['bio'].required = False
 
 class UserRegistrationForm(UserCreationForm):
     first_name = CharField(max_length=50, widget=TextInput(attrs={'class':'new-user-firstname'}))

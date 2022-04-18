@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 class Neighbourhood(models.Model):
     name = models.CharField(max_length=150)
-    location = models.CharField(max_length=150)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
