@@ -33,6 +33,7 @@ class Neighbourhood(models.Model):
 class Profile(models.Model):
     user_profile = models.OneToOneField(User, related_name='currentuser', on_delete=models.CASCADE)
     bio = models.TextField()
+    location = models.CharField(max_length=150, blank=True)
     users_neighbourhood = models.ForeignKey(Neighbourhood, related_name='members', on_delete=models.DO_NOTHING, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)

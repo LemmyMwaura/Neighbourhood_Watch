@@ -31,6 +31,7 @@ class ProfileForm(ModelForm):
         exclude = ['updated','created','user_profile','users_neighbourhood']
         widgets = {
             'bio': Textarea(attrs={'class':'profile-form-bio','rows':4, 'cols':35}),
+            'location': TextInput(attrs={'class':'profile-form-location'})
         }
 
 class UserRegistrationForm(UserCreationForm):
