@@ -41,6 +41,10 @@
     border-radius: 0.5rem;
 }
 
+.profile-btn{
+    padding: 0.5rem;
+}
+
 .profile-bio a span{
     color: hsl(35, 85%, 65%);
 }

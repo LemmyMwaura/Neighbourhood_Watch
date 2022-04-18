@@ -16,9 +16,13 @@ def home(request):
         Q(hood__name__icontains = q) |
         Q(message__icontains = q)
     )
+    businesses = Business.objects.filter(
+        Q( name__icontains = q) |
+        Q( description__icontains = q )
+    )
     form = PostForm
 
-    context = {"neighbourhoods":neighbourhoods, "posts":posts, "form":form}
+    context = {"neighbourhoods":neighbourhoods, "posts":posts, "businesses":businesses, "form":form}
     return render(request,'base/home.html',context)
 
 def login_user(request):
@@ -130,10 +134,18 @@ def update_post(request,pk):
 
 @login_required(login_url='login')
 def neighbourhood(request,pk):
-    neighbourhoods = Neighbourhood.objects.all()
     hood = Neighbourhood.objects.get(id=pk)
-    posts = hood.posts.all()
-    businesses = hood.business_set.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    posts = hood.posts.filter(
+        Q(user__user_profile__username__icontains = q) |
+        Q(hood__name__icontains = q) |
+        Q(message__icontains = q)
+    )
+    businesses = hood.business_set.filter(
+        Q( name__icontains = q) |
+        Q( description__icontains = q )
+    )
+    neighbourhoods = Neighbourhood.objects.all()
     members = hood.members.all()
     form = BusinessForm
 
@@ -163,11 +175,18 @@ def create_business(request,pk):
 @login_required(login_url='login')
 def profile(request,pk):
     profile = Profile.objects.get(id=pk)
-    posts = profile.post_set.all()
-    businesses = profile.business_set.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    posts = profile.post_set.filter(
+        Q(user__user_profile__username__icontains = q) |
+        Q(hood__name__icontains = q) |
+        Q(message__icontains = q)
+    )
+    businesses = profile.business_set.filter(
+        Q( name__icontains = q) |
+        Q( description__icontains = q )
+    )
     form = ProfileForm(instance=profile)
     neighbourhoods = Neighbourhood.objects.all()
-    
 
     if request.method == 'POST':
         try:

@@ -3,7 +3,7 @@
         <i class='bx bx-layer'></i>
         <span>HoodWatch</span>
     </a>
-    <form action="{% url 'home' %}" class="nav-search"> 
+    <form action="{{ request.META.HttpRequest.path }}" class="nav-search"> 
         <i class='bx bx-search tooltip'></i>
         <input class="search-input" type="text" name="q">
     </form>
