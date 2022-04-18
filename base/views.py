@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from base.forms import BusinessForm, PostForm, UserRegistrationForm
+from base.forms import BusinessForm, PostForm, UserRegistrationForm, ProfileForm
 from base.models import Neighbourhood, Post, Profile, Business
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -155,14 +155,34 @@ def create_business(request,pk):
                 messages.success(request, 'Your Business was posted')
                 return redirect('open-hood', pk=pk)
             else:
-                messages.error(request, 'Something went wrong')
+                messages.error(request, 'Something went wrong, Your business wasn\'t posted, Try again.')
         except Exception as e:
-            messages.error(request, 'Error')
+            messages.error(request, 'An Error occured. Try again')
 
 @login_required(login_url='login')
 def profile(request,pk):
     profile = Profile.objects.get(id=pk)
     posts = profile.post_set.all()
+    form = ProfileForm(instance=profile)
+    neighbourhoods = Neighbourhood.objects.all()
 
-    context={"profile":profile, "posts":posts}
+    if request.method == 'POST':
+        try:
+            hood_name = request.POST.get('users_neighbourhood')
+            hood, created = Neighbourhood.objects.get_or_create(name=hood_name).lower()
+            print(hood)
+
+            form = ProfileForm(request.POST, instance=profile)
+            if form.is_valid():
+                profile = form.save(commit=False)
+                profile.users_neighbourhood = hood
+                profile.save()
+                messages.success(request, 'Your profile was updated')
+                return redirect('profile', pk=pk)
+            else:
+                messages.error(request, 'Your input(s) was not valid, Try again')
+        except Exception as e:
+            messages.error(request, 'An Error occured. Try again', print(e), e)
+
+    context={"profile":profile, "posts":posts, "form":form, "neighbourhoods":neighbourhoods}
     return render(request, 'base/profile.html', context)

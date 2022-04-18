@@ -6,5 +6,65 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+    <!-- Modal form -->
+    <form class="create-post-form modal" method="POST">
+        {% csrf_token %}
+        <div class="title">Edit Profile</div>
+        <div class="form-group">
+            <label for="id_bio" class="form-label">Bio</label>
+            {{ form.bio }}
+        </div>
+        <div class="form-group">
+            <label for="id_users_neighbourhood" class="form-label">Neighbourhood</label>
+            <input required class="profile-users-neighbourhood" list="hood-list" type="text" id="id_users_neighbourhood" name="users_neighbourhood" placeholder="Enter your neighbourhood">
+            <datalist id="hood-list">
+                <select name="" id="hood-item">
+                    {% for hood in neighbourhoods %}
+                    <option value="{{hood.name}}">{{hood.name}}</option>
+                    {% endfor %}
+                </select>
+            </datalist>
+        </div>
+        <input type="submit" class="btn form-btn" value="Update">
+    </form>
+    <div class="overlay">
+        <i class='bx bx-x overlay-tooltip'></i>
+    </div>
+    <!-- end form -->
+    <section class="profile-wrapper">
+        <article class="profile">
+            <div class="profile-name">
+                {{ profile.user_profile.username }}
+            </div>
+            <div class="right">
+                <div class="profile-bio">
+                    {{ profile.bio }}
+                </div>
+                <div class="profile-bio">
+                    {{ profile.users_neighbourhood.name }}
+                </div>
+                <button class="btn create-post-btn activate-btn">
+                    <i class='bx bx-plus tooltip-add'></i>
+                    <span>Edit Profile</span> 
+                </button>
+            </div>
+        </article>
+        <div class="user-details">
+            <div class="all-posts">
+                <h1 class="profile-title">Posts</h1>
+                {% for post in posts %}
+                    {% include 'base/post_component.html' %}
+                {% endfor %}
+            </div>
+            <div class="all-bsns">
+                <h1 class="profile-title">Business'</h1>
+                {% for bsns in businesses %}
+                    {% include 'base/post_component.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
 
 {% endblock %}
