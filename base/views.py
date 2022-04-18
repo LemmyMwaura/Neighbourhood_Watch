@@ -172,8 +172,7 @@ def profile(request,pk):
     if request.method == 'POST':
         try:
             hood_name = request.POST.get('users_neighbourhood')
-            hood, created = Neighbourhood.objects.get_or_create(name=hood_name).lower()
-            print(hood)
+            hood, created = Neighbourhood.objects.get_or_create(name=hood_name)
 
             form = ProfileForm(request.POST, instance=profile)
             if form.is_valid():

@@ -16,6 +16,10 @@
             {{ form.bio }}
         </div>
         <div class="form-group">
+            <label for="id_location" class="form-label">General Location</label>
+            {{ form.location }}
+        </div>
+        <div class="form-group">
             <label for="id_users_neighbourhood" class="form-label">Neighbourhood</label>
             <input required class="profile-users-neighbourhood" list="hood-list" type="text" id="id_users_neighbourhood" name="users_neighbourhood" placeholder="Enter your neighbourhood">
             <datalist id="hood-list">
@@ -35,19 +39,26 @@
     <section class="profile-wrapper">
         <article class="profile">
             <div class="profile-name">
-                {{ profile.user_profile.username }}
+                <span class="name">{{ profile.user_profile.username }}</span> 
             </div>
             <div class="right">
                 <div class="profile-bio">
                     {{ profile.bio }}
                 </div>
                 <div class="profile-bio">
-                    {{ profile.users_neighbourhood.name }}
+                    <a href="{% url 'open-hood' profile.users_neighbourhood.id %}">
+                        Neighbourhood: <span>{{ profile.users_neighbourhood.name }}</span>
+                    </a>
                 </div>
+                <div class="profile-bio">
+                    General Location: {{ profile.location }}
+                </div>
+                {% if request.user.id == profile.user_profile.id %}
                 <button class="btn create-post-btn activate-btn">
                     <i class='bx bx-plus tooltip-add'></i>
                     <span>Edit Profile</span> 
                 </button>
+                {% endif %}
             </div>
         </article>
         <div class="user-details">
