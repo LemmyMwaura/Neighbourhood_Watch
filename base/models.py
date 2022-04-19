@@ -19,15 +19,15 @@ class Neighbourhood(models.Model):
     def delete_neighbourhood(self):
         self.delete()
   
-    def update_neighbourhood():
-        pass
+    def update_neighbourhood(self):
+        self.save()
 
     def update_occupants():
-        pass
+        return Neighbourhood.objects.all().count()
 
     @classmethod
     def find_neighbourhood(cls,neigborhood_id):
-        return cls.objects.filter(id=neigborhood_id)
+        return cls.objects.get(id=neigborhood_id)
 
 
 class Profile(models.Model):
@@ -48,7 +48,6 @@ class Post(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     hood = models.ForeignKey(Neighbourhood, related_name='posts', on_delete=models.CASCADE)
     message = models.TextField()
-    # comments = models.ForeignKey('Comment',related_name='comments', blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -58,10 +57,10 @@ class Post(models.Model):
     def __str__(self):
         return self.message[:50]
 
-    def save_project(self):
+    def create_post(self):
         self.save()
 
-    def delete_project(self):
+    def delete_post(self):
         self.delete()
 
 class Business(models.Model):
@@ -83,9 +82,12 @@ class Business(models.Model):
     def create_business(self):
         self.save()
   
-    def update_business(self):
+    def delete_business(self):
         self.delete()
+
+    def update_business(self):
+        self.save()
 
     @classmethod
     def find_business(cls,business_id):
-        cls.objects.filter(id=business_id)
+        return cls.objects.get(id=business_id)
