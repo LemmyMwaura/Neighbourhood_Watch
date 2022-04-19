@@ -81,6 +81,11 @@ def logout_user(request):
 def create_post(request):
     current_user_profile = Profile.objects.get(id=request.user.id)
 
+    if current_user_profile.users_neighbourhood is None:
+        print(current_user_profile.users_neighbourhood)
+        messages.error(request, 'Edit your profile and Add your neighbourhood to create a post')
+        return redirect('home')
+
     if request.method == 'POST':
         try:
             form = PostForm(request.POST)
@@ -154,6 +159,10 @@ def neighbourhood(request,pk):
 @login_required(login_url='login')
 def create_business(request,pk):
     current_user_profile = Profile.objects.get(id=request.user.id)
+
+    if request.user.currentuser.users_neighbourhood.id != int(pk):
+        messages.error(request, 'This is not your neighbourhood. Make sure you\'ve edited your profile.')
+        return redirect('open-hood', pk=pk)
 
     if request.method == 'POST':
         try:

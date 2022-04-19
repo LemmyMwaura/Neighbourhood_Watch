@@ -25,13 +25,11 @@
         <div class="home-wrapper">
             <section class="home">
                 <div class="home-header">
-                    <h1 class="home-title">Home</h1>
-                    {% if request.user.currentuser.users_neighbourhood != None %}
+                    <h1 class="home-title">Home</h1>   
                     <button class="btn create-post-btn activate-btn">
                         <i class='bx bx-plus tooltip-add'></i>
                         <span>Create Post</span> 
-                    </button>
-                    {% endif %}
+                    </button>    
                 </div>
                 <div class="all-posts">
                     {% for post in posts %}

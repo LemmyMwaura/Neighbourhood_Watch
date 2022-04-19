@@ -97,6 +97,14 @@ nav{
 .dropdown-menu.items{
     display: grid;
     gap: 10px;
+    border-radius: 0.5rem;
+    border: 2px solid #f1b058;
+}
+
+.profile-options{
+    background-color: #202222;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }
 
 .dropdown{
