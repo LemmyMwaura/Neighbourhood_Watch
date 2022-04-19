@@ -185,6 +185,10 @@ nav{
     transform: rotate(90deg);
 }
 
+.post-user{
+    color: hsl(35, 85%, 65%)
+}
+
 /* Modal */
 .create-post-form{
     position: fixed;
@@ -325,9 +329,9 @@ nav{
   }
   
   /* firefox custom scrollbar */
-  @supports (scrollbar-color: #f1b058 #040c18) {
+  @supports (scrollbar-color: #f1b058 #121112) {
     * {
-      scrollbar-color: #c6d1f1 #040c18;
+      scrollbar-color: #f1b058 #121112;
       scrollbar-width: thin;
     }
   }
