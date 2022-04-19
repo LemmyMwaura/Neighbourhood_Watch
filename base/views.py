@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.contrib import messages
 
 # Create your views here.
+@login_required(login_url='login')
 def home(request):
     neighbourhoods = Neighbourhood.objects.all()
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -82,7 +83,6 @@ def create_post(request):
     current_user_profile = Profile.objects.get(id=request.user.id)
 
     if current_user_profile.users_neighbourhood is None:
-        print(current_user_profile.users_neighbourhood)
         messages.error(request, 'Edit your profile and Add your neighbourhood to create a post')
         return redirect('home')
 
@@ -160,8 +160,12 @@ def neighbourhood(request,pk):
 def create_business(request,pk):
     current_user_profile = Profile.objects.get(id=request.user.id)
 
+    if current_user_profile.users_neighbourhood is None:
+        messages.error(request, 'Edit your profile and Add your neighbourhood to Add your Business')
+        return redirect('open-hood', pk=pk)
+
     if request.user.currentuser.users_neighbourhood.id != int(pk):
-        messages.error(request, 'This is not your neighbourhood. Make sure you\'ve edited your profile.')
+        messages.error(request, 'This is not your neighbourhood. Go to your neighbourhood to add your business')
         return redirect('open-hood', pk=pk)
 
     if request.method == 'POST':

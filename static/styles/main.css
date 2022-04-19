@@ -161,6 +161,9 @@ nav{
 }
 
 .modal-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: hsl(180, 2%, 13%);
     color: hsl(35, 85%, 65%);
     height: 3rem;
@@ -172,8 +175,9 @@ nav{
 }
 
 .flash-tooltip{
-    font-size: 2.5rem;
+    font-size: 2rem;
     cursor: pointer;
+    padding: 0.2rem;
     transition: 0.2s;
 }
 
