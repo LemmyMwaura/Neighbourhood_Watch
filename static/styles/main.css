@@ -41,6 +41,12 @@ nav{
     border-radius: 0.5rem;
 }
 
+.nav-logo{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .nav-logo *{
     font-size: 1rem;
 }
@@ -250,6 +256,9 @@ nav{
 
 .hood-name{
     text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .neighbourhood-wrapper, .hood-alllink{

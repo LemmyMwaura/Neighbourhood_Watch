@@ -46,9 +46,11 @@
                     {{ profile.bio }}
                 </div>
                 <div class="profile-bio">
+                    {% if profile.users_neighbourhood %}
                     <a href="{% url 'open-hood' profile.users_neighbourhood.id %}">
                         Neighbourhood: <span>{{ profile.users_neighbourhood.name }}</span>
                     </a>
+                    {% endif %}
                 </div>
                 <div class="profile-bio">
                     General Location: {{ profile.location }}

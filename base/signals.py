@@ -9,7 +9,6 @@ def create_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user_profile=instance)
 
 @receiver(post_save, sender=User)
-@receiver(m2m_changed, sender=Profile)
 def update_profile(sender, instance, created, **kwargs):
     if created == False:
-        instance.profile.save()
+        instance.currentuser.save()

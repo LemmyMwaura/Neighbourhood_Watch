@@ -7,6 +7,7 @@
     <div class="post-message">{{ post.message }}</div>
     <div class="footer">
         <div class="time">{{ post.created|timesince }} ago</div>
+        {% if request.user == post.user.user_profile %}
         <div class="edits">
             <a class="btn edit-post" href="{% url 'update-post' post.id %}">
                 <i class='bx bxs-edit'></i>
@@ -17,5 +18,6 @@
                 <span class="delete">Delete</span>
             </a>
         </div> 
+        {% endif %}
     </div>
 </div>

@@ -9,6 +9,7 @@
     </div>
     <div class="footer">
         <div class="time">{{ bsns.created|timesince }} ago</div>
+        {% if request.user == bsns.users_name.user_profile %}
         <div class="edits">
             <a class="btn edit-post" href="{% url 'update-post' bsns.id %}">
                 <i class='bx bxs-edit'></i>
@@ -19,5 +20,6 @@
                 <span class="delete">Delete</span>
             </a>
         </div> 
+        {% endif %}
     </div>
 </div>

@@ -6,7 +6,10 @@
             {% for neighbourhood in neighbourhoods %}
             <div class="neighbourhood-wrapper">
                 <div class="neighbourhood-header">
-                    <a class="hood-name" href="{{request.META.HttpRequest.path}}?q={{neighbourhood.name}}">{{ neighbourhood.name }}</a>
+                    <a class="hood-name" href="{{request.META.HttpRequest.path}}?q={{neighbourhood.name}}">
+                        <span>{{ neighbourhood.name }}</span>
+                        <span>({{ neighbourhood.members.count }})</span>
+                    </a>
                     <a class="btn openhood-btn" href="{% url 'open-hood' neighbourhood.id %}">Open</a>
                 </div>
             </div>

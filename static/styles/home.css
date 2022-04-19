@@ -60,6 +60,10 @@
     column-gap: 5px;
 }
 
+.post-user{
+    color: hsl(35, 85%, 65%)
+}
+
 .post-message{
     font-size: 2rem;
 }

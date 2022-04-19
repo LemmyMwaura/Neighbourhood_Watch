@@ -46,7 +46,7 @@ def login_user(request):
             messages.success(request, f'Welcome back {request.user.username}') 
             return redirect('home')
         else:
-            messages.error(request, 'Username or password does not exist')
+            messages.error(request, 'Password is incorrect, Try again')
 
     context={"page":page}
     return render(request, 'base/login_register.html', context)
@@ -147,8 +147,8 @@ def neighbourhood(request,pk):
     members = hood.members.all()
     form = BusinessForm
 
-    context = {"hood":hood, "posts":posts, "members":members,
-        "form":form, "neighbourhoods":neighbourhoods, "businesses":businesses }
+    context = {"hood":hood, "posts":posts, "members":members, "form":form,
+                        "neighbourhoods":neighbourhoods, "businesses":businesses }
     return render(request, 'base/hood.html', context)
 
 @login_required(login_url='login')
